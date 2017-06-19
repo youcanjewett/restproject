@@ -7,39 +7,70 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>katie Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
+  <properties>
+        <springframework.version>4.1.9.RELEASE</springframework.version>
+        <hibernate.version>4.3.6.Final</hibernate.version>
+        <mysql.connector.version>5.0.4</mysql.connector.version>
+        <joda-time.version>2.3</joda-time.version>
+        <testng.version>6.9.4</testng.version>     
+        <jersey.version>2.25.1</jersey.version>    
+        <maven.compiler.source>1.8</maven.compiler.source>
+   		<maven.compiler.target>1.8</maven.compiler.target>                  
+  </properties>
+  
   <dependencies>
   
     <!-- Jersey -->
 		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-server</artifactId>
-			<version>1.8</version>
+		    <groupId>org.glassfish.jersey.core</groupId>
+		    <artifactId>jersey-server</artifactId>
+		    <version>${jersey.version}</version>
 		</dependency>
+
 
 		<!-- Spring 3 dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>3.0.5.RELEASE</version>
+			<version>${springframework.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>3.0.5.RELEASE</version>
+			<version>${springframework.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>3.0.5.RELEASE</version>
+			<version>${springframework.version}</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+        
+     
 
 		<!-- Jersey + Spring -->
-		<dependency>
-			<groupId>com.sun.jersey.contribs</groupId>
-			<artifactId>jersey-spring</artifactId>
-			<version>1.8</version>
+		<dependency>		
+			    <groupId>org.glassfish.jersey.ext</groupId>
+			    <artifactId>jersey-spring3</artifactId>
+			    <version>2.25.1</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework</groupId>
@@ -63,13 +94,79 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		
 		<dependency>
-		    <groupId>com.sun.jersey</groupId>
-		    <artifactId>jersey-json</artifactId>
-		    <version>1.8</version>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-multipart</artifactId>
+			<version>${jersey.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.ext</groupId>
+			<artifactId>jersey-entity-filtering</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+	    <dependency>
+	        <groupId>org.glassfish.jersey.media</groupId>
+	        <artifactId>jersey-media-json-jackson</artifactId>
+	        <version>${jersey.version}</version>
+	    </dependency>
+		
+	<!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+ 
+        <!-- jsr303 validation -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.1.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.1.3.Final</version>
+        </dependency>
+        
+        <!-- MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.connector.version}</version>
+        </dependency>
+ 
+        <!-- Joda-Time -->       
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda-time.version}</version>
+        </dependency>
+         
+        <!-- To map JodaTime with database type -->      
+        <dependency>
+            <groupId>org.jadira.usertype</groupId>
+            <artifactId>usertype.core</artifactId>
+            <version>3.0.0.CR1</version>
+        </dependency>
+
+	
   </dependencies>
+
   <build>
+  <plugins>
+	  <plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-compiler-plugin</artifactId>
+	    <version>3.2</version> <!-- or whatever current version -->
+	    <configuration>
+	      <source>1.8</source>
+	      <target>1.8</target>
+	    </configuration>
+	  </plugin>
+</plugins>
     <finalName>katie</finalName>
   </build>
 </project>

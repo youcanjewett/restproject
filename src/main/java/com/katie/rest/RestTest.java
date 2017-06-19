@@ -13,8 +13,9 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.katie.model.Name;
 import com.katie.service.GreetingTest;
-import com.katie.service.MyService;
+import com.katie.service.NameService;
 
 @Component
 @Path("/rest")
@@ -25,7 +26,7 @@ public class RestTest {
 	public static GreetingTest gtest = new GreetingTest(3, "cat"); 
 	
 	@Autowired
-	public MyService myservice;
+	public NameService myservice;
 	
 	@GET
 	@Path("/hello")
@@ -75,6 +76,14 @@ public class RestTest {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response greeting(GreetingTest greeting){
 		gtest = greeting;
+		return Response.ok().build();
+	}
+	
+	@POST
+	@Path("/name")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response postName(Name myName){
+		myservice.postName(myName);
 		return Response.ok().build();
 	}
 	
